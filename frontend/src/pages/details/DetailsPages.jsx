@@ -76,7 +76,16 @@ export const DetailsPages = () => {
             )}
 
             {update ? <input type='text' value={title} className='updateInput' onChange={(e) => setTitle(e.target.value)} /> : <h1>{post.title}</h1>}
-            {update ? <textarea value={desc} cols='30' rows='10' className='updateInput' onChange={(e) => setDesc(e.target.value)}></textarea> : <p>{post.desc}</p>}
+            {update ? (
+              <textarea value={desc} cols='30' rows='10' className='updateInput' onChange={(e) => setDesc(e.target.value)}></textarea>
+            ) : (
+              // Map through desc paragraphs and render each in a separate <p> element
+              <div>
+                {desc.split('\n').map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            )}
 
             <p>
               Author: <Link to={`/?user=${post.username}`}>{post.username}</Link>

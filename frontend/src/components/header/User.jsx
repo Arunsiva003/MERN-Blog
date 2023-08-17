@@ -7,6 +7,7 @@ import { BiLogOut } from "react-icons/bi"
 import { RiImageAddLine } from "react-icons/ri"
 import { Context } from "../../context/Context"
 import { Link } from "react-router-dom"
+import Img from "../../assets/images/user.jpg";
 
 export const User = () => {
   const { user, dispatch } = useContext(Context)
@@ -27,14 +28,14 @@ export const User = () => {
         {user ? (
           <>
             <button className='img' onClick={() => setProfileOpen(!profileOpen)}>
-              <img src={PublicFlo + user.profilePic} alt='' />
+              <img src={user.profilePic ? PublicFlo + user.profilePic : Img} alt='' />
             </button>
             {profileOpen && (
               <div className='openProfile boxItems' onClick={close}>
                 <Link to={"/account"}>
                   <div className='image'>
                     <div className='img'>
-                      <img src={PublicFlo + user.profilePic} alt='' />
+                      <img src={user.profilePic ? PublicFlo + user.profilePic : Img} alt='' />
                     </div>
                     <div className='text'>
                       <h4>{user.username}</h4>
