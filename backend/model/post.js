@@ -1,5 +1,21 @@
 const mongoose = require("mongoose")
 
+
+const CommentSchema = new mongoose.Schema(
+  {
+    text: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+
 const PostSchema = new mongoose.Schema(
   {
     title: {
@@ -23,6 +39,7 @@ const PostSchema = new mongoose.Schema(
       type: Array,
       require: false,
     },
+    comments: [CommentSchema],
   },
   { timestamps: true }
 )

@@ -17,22 +17,25 @@ export const DetailsPages = () => {
   const [title, setTitle] = useState("")
   const [desc, setDesc] = useState("")
   const [update, setUpdate] = useState(false)
+  const [commentText, setCommentText] = useState("");
 
   //setp 2
   const [post, setPost] = useState({})
-  useEffect(() => {
-    const getPost = async () => {
-      const res = await axios.get("/posts/" + path)
-      console.log(res)
-      //setp 2
-      setPost(res.data)
-      //setp 4
-      setTitle(res.data.title)
-      setDesc(res.data.desc)
+  const getPost = async () => {
+    try {
+      const res = await axios.get("/posts/" + path);
+      console.log(res);
+      setPost(res.data);
+      setTitle(res.data.title);
+      setDesc(res.data.desc);
+    } catch (error) {
+      console.error(error);
     }
-    getPost()
-  }, [path])
+  };
 
+  useEffect(() => {
+    getPost(); // Call the getPost function here
+  }, [path]);
   // step 3
   // file create garne time add garne
   const PublicFlo = "http://localhost:5000/images/"
@@ -52,6 +55,27 @@ export const DetailsPages = () => {
       window.location.reload()
     } catch (error) {}
   }
+
+  //comment update
+  const handleComment = async () => {
+    if (commentText.trim() !== "") {
+      try {
+        await axios.post(
+          `/posts/${post._id}/comments`,
+          {
+            text: commentText,
+            username: user.username,
+          }
+        );
+        // Clear the input field and refresh comments
+        setCommentText("");
+        getPost();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  
 
   return (
     <>
@@ -92,6 +116,28 @@ export const DetailsPages = () => {
             </p>
           </div>
         </div>
+        {post.comments ?
+        <div className="comments">
+          {/* <h3>Comments</h3> */}
+          
+          {user && (
+            <div className="comment-form">
+              <textarea className="comment-box"
+                placeholder="Add a comment..."
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+              ></textarea>
+              <button className="add-button" onClick={handleComment}>Add</button>
+            </div>
+          )}
+          {post.comments.map((comment) => (
+            <div key={comment._id} className="comment">
+              <p>{comment.text}</p>
+              <span>By {comment.username}</span>
+            </div>
+          ))}
+        </div> : <p>No comments....</p>}
+
       </section>
     </>
   )

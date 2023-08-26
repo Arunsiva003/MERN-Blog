@@ -18,6 +18,30 @@ router.post("/", async (req, res) => {
     "desc":"loreme2"
 } */
 
+
+
+//comment
+// Add a new comment to a post
+router.post("/:id/comments", async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    post.comments.push({
+      text: req.body.text,
+      username: req.body.username,
+    });
+
+    const updatedPost = await post.save();
+    res.status(201).json(updatedPost);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+
 // update post
 router.put("/:id", async (req, res) => {
   try {
