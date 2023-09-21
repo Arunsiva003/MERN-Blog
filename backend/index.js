@@ -26,7 +26,6 @@ mongoose
   .connect(process.env.CONNECT_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    family : 4
     /*  useCreateIndex: true,
     useFindAndModify: true,*/
   })
