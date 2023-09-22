@@ -38,7 +38,7 @@ export const DetailsPages = () => {
   }, [path]);
   // step 3
   // file create garne time add garne
-  const PublicFlo = "http://localhost:5000/images/"
+  const PublicFlo = "https://as-mer-blog.onrender.com/images/"
   const { user } = useContext(Context)
 
   const handleDelete = async () => {
