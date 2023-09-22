@@ -3,6 +3,7 @@ const express = require("express")
 const app = express()
 const dotenv = require("dotenv")
 const mongoose = require("mongoose")
+const cors = require("cors");
 
 //---- step : 3
 const multer = require("multer")
@@ -13,6 +14,14 @@ const authRoute = require("./routes/auth")
 const authUser = require("./routes/user")
 const authPost = require("./routes/posts")
 const authCat = require("./routes/categories")
+
+
+
+app.use(
+  cors({
+    origin: 'https://as-mernblog.netlify.app',
+  })
+);
 
 //---- step : 1
 dotenv.config()
