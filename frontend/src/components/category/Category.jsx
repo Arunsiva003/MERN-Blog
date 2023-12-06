@@ -55,7 +55,7 @@ export const Category = () => {
 
   useEffect(() => {
     const getCat = async () => {
-      const res = await axios.get("/category" + search)
+      const res = await axios.get("https://as-mer-blog.onrender.com/category" + search)
       setCat(res.data)
     }
     getCat()
@@ -70,7 +70,7 @@ export const Category = () => {
                 <div className='box' key={item.id}>
                   <img src={item.cover} alt='cover' />
                   <div className='overlay'>
-                    <Link to={`/?cat=${item.name}`} className='link'>
+                    <Link to={`https://as-mer-blog.onrender.com/auth/?cat=${item.name}`} className='link'>
                       <h4>{item.category}</h4>
                     </Link>
                     <p>{item.title}</p>

@@ -18,7 +18,7 @@ export const DetailsPages = () => {
   const [post, setPost] = useState({})
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path)
+      const res = await axios.get("https://as-mer-blog.onrender.com/posts/" + path)
       console.log(res)
       //setp 2
       setPost(res.data)
@@ -33,7 +33,7 @@ export const DetailsPages = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, { data: { username: user.username } })
+      await axios.delete(`https://as-mer-blog.onrender.com/posts/${post._id}`, { data: { username: user.username } })
       window.location.replace("/")
     } catch (error) {}
   }

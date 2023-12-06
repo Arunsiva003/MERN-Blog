@@ -18,7 +18,7 @@ export const Regsiter = () => {
         email,
         password,
       })
-      res.data && window.location.replace("/login")
+      res.data && window.location.replace("https://as-mernblog.netlify.app/login")
     } catch (error) {
       setError(true)
     }

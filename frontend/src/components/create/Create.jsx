@@ -31,14 +31,14 @@ export const Create = () => {
       newPost.photo = filename
 
       try {
-        await axios.post("/upload", data)
+        await axios.post("https://as-mer-blog.onrender.com/upload", data)
       } catch (error) {
         console.log(error)
       }
     }
     try {
-      const res = await axios.post("/posts", newPost)
-      window.location.replace("/post/" + res.data._id)
+      const res = await axios.post("https://as-mer-blog.onrender.com/posts", newPost)
+      window.location.replace("https://as-mernblog.netlify.app/post/" + res.data._id)
     } catch (error) {}
   }
 
