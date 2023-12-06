@@ -33,7 +33,7 @@ export const Account = () => {
       updateUser.profilePic = filename
 
       try {
-        await axios.post("/upload", data)
+        await axios.post("https://as-mer-blog.onrender.com/upload", data)
       } catch (error) {
         console.log(error)
       }
