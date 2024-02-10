@@ -19,7 +19,7 @@ const authCat = require("./routes/categories")
 
 app.use(
   cors({
-    origin: 'https://as-mernblog.netlify.app',
+    origin: ['http://localhost:3000', 'https://as-mernblog.netlify.app'],
   })
 );
 
